@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: springcloud-provider
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        heart-beat-timeout: 5000
+        heart-beat-interval: 500
+      password: nacos
+      username: nacos
+server:
+  port: 9000
+logging:
+  level:
+    root: error
+    io.github.hefrankeleyn.sc: debug
