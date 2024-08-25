@@ -27,12 +27,12 @@
 
 ```java
 @FeignClient(value = "springcloud-provider")
-public interface HelloServiceClient extends io.github.hefrankeleyn.sc.api.HelloServiceClient {
+public interface HelloServiceClient extends io.github.hefrankeleyn.sc.api.service.HelloApiService {
 
 }
 
 @FeignClient(value = "springcloud-provider")
-public interface UserServiceClient extends io.github.hefrankeleyn.sc.api.UserServiceClient {
+public interface UserServiceClient extends io.github.hefrankeleyn.sc.api.service.UserApiService {
 
 }
 ```
@@ -43,12 +43,12 @@ public interface UserServiceClient extends io.github.hefrankeleyn.sc.api.UserSer
 
 ```java
 @FeignClient(value = "springcloud-provider", contextId = "providerClient")
-public interface HelloServiceClient extends io.github.hefrankeleyn.sc.api.HelloServiceClient {
+public interface HelloServiceClient extends io.github.hefrankeleyn.sc.api.service.HelloApiService {
 
 }
 
 @FeignClient(value = "springcloud-provider", contextId = "userClient")
-public interface UserServiceClient extends io.github.hefrankeleyn.sc.api.UserServiceClient {
+public interface UserServiceClient extends io.github.hefrankeleyn.sc.api.service.UserApiService {
 
 }
 ```
@@ -64,12 +64,12 @@ public interface UserServiceClient extends io.github.hefrankeleyn.sc.api.UserSer
 
 ```java
 @FeignClient(value = "springcloud-provider", contextId = "helloServiceClient")
-public interface HelloServiceClient extends io.github.hefrankeleyn.sc.api.HelloServiceClient {
+public interface HelloServiceClient extends io.github.hefrankeleyn.sc.api.service.HelloApiService {
 
 }
 
 @FeignClient(value = "springcloud-provider", contextId = "userServiceClient")
-public interface UserServiceClient extends io.github.hefrankeleyn.sc.api.UserServiceClient {
+public interface UserServiceClient extends io.github.hefrankeleyn.sc.api.service.UserApiService {
 
 }
 ```
@@ -79,12 +79,12 @@ public interface UserServiceClient extends io.github.hefrankeleyn.sc.api.UserSer
 
 ```java
 @FeignClient(name = "helloServiceClient", value = "springcloud-provider")
-public interface HelloServiceClient extends io.github.hefrankeleyn.sc.api.HelloServiceClient {
+public interface HelloServiceClient extends io.github.hefrankeleyn.sc.api.service.HelloApiService {
 
 }
 
 @FeignClient(name = "userServiceClient", value = "springcloud-provider")
-public interface UserServiceClient extends io.github.hefrankeleyn.sc.api.UserServiceClient {
+public interface UserServiceClient extends io.github.hefrankeleyn.sc.api.service.UserApiService {
 
 }
 ```

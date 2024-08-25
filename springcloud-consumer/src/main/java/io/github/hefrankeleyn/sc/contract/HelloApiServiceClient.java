@@ -1,5 +1,6 @@
-package io.github.hefrankeleyn.sc.consumer;
+package io.github.hefrankeleyn.sc.contract;
 
+import io.github.hefrankeleyn.sc.api.service.HelloApiService;
 import org.springframework.cloud.openfeign.FeignClient;
 
 
@@ -8,6 +9,6 @@ import org.springframework.cloud.openfeign.FeignClient;
  * @Author lifei
  */
 @FeignClient(value = "springcloud-provider", contextId = "providerClient")
-public interface HelloServiceClient extends io.github.hefrankeleyn.sc.api.HelloServiceClient {
+public interface HelloApiServiceClient extends HelloApiService {
 
 }

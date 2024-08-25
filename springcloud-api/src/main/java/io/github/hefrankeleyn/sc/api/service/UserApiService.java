@@ -1,4 +1,4 @@
-package io.github.hefrankeleyn.sc.api;
+package io.github.hefrankeleyn.sc.api.service;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @Date 2024/8/24
  * @Author lifei
  */
-public interface UserServiceClient {
+public interface UserApiService {
 
     @RequestMapping(value = "/userController/list", method = RequestMethod.GET)
     String list(@RequestParam("name") String name);
