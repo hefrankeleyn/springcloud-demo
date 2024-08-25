@@ -5,7 +5,10 @@
 类似下面的下问题，非常多，它并不是bug，它就是这么设计的，多探讨一些类似的东西。
 探讨的越多，再去追源码，就会对springcloud体系有更深的理解。
 
+
 ## 二、启动步骤
+
+
 1. 下载nacos：https://github.com/alibaba/nacos/releases/tag/2.4.1
 2. 将jdk切换为1.8，启动nacos；
 
@@ -111,3 +114,57 @@ public class MyApplication {
 ```
 
 在大多数情况下，方法一或方法二是解决这个问题的最佳方式。
+
+
+## 四、最佳实践
+
+### （1）使用接口契约
+
+最佳实践：使用接口契约，来约束springcloud-provider  和 springcloud-consumer
+
+### （2）对请求报文、响应报文进行约束
+
+好处：
+1. 假如返回出错，可以用封装的通用报文来描述这个错误；
+2. 便于在开发阶段，进行Mock报文；
+3. 有利于做服务编排；
+4. 如果业务规模比较大，有几千个这样的服务，所有服务基础代码都是一样的，可以有一个base服务去描述它们的共享；
+
+报文放在什么地方？定义出一个新的服务：springcloud-common。
+
+
+### （3） 定义服务元信息，有利于实现负载策略
+如何在注册中心中，标识这个服务的元信息（哪个机房）：
+1. 标识 服务（provider和consumer） 的元信息；
+2. 让大家相互之间能感知到；
+做法：
+1. 在启动时候，添加环境变量，补充这些信息；
+2. 拦截注册中心的注册方法，把这些信息写到注册信息的节点数据上去；
+   传统的做法是在配置文件中配置： `pring.cloud.nacos.discovery.metadata.dc = B001`
+   但我们要让其跟启动节点相关，跟通用信息不相关，所以只需要在每个机房部署这些信息的时候，把这些脚本变量改成不一样的就行，这样就不用在配置文件中配置了。
+3. 这样，在客户端，就能获取到这些信息；
+
+负载均衡策略：
+1. 方案一：可以使用spring默认的策略：
+   https://docs.spring.io/spring-cloud-commons/docs/current/reference/html/#spring-cloud-loadbalancer
+2. 方案二：使用自定义的策略，只需要在spring容器中装配一个： ReactorServiceInstanceLoadBalancer 的bean；
+   这样SpringCloud就会优先使用我们定义的这个；
+3. 在springcloud-openFeign中指定使用哪个策略：@FeginClient中有一个 configuration参数；
+
+### （4）springcloud 里面其它内容
+
+1. spring.cloud.loadbalancer.retry;
+2. eager-load 用来做服务预热；
+
+## 五、技术组件
+
+技术组件：
+技术专项：通用报文的设计。
+
+
+## 六、探索的过程远比探索的结果重要
+
+1. 约定大于配置；
+2. 方向：大规模、大并发下的最佳实践；
+3. 探讨目标：这块有多少路、这路条如何设计和落地，这个探讨的过程更重要，比最后的结果还重要；
+   掌握探索过程的经验和方法。
