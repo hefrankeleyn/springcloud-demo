@@ -9,7 +9,8 @@
 ## 二、启动步骤
 
 
-1. 下载nacos：https://github.com/alibaba/nacos/releases/tag/2.4.1
+1. 下载nacos：https://github.com/alibaba/nacos/releases/tag/2.4.3
+   nacos-server-2.4.3.zip
 2. 将jdk切换为1.8，启动nacos；
 
 ```shell

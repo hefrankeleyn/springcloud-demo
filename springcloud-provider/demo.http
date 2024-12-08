@@ -1,0 +1,7 @@
+### list
+GET http://localhost:9000/userController/list?name=aa
+Accept: application/json
+
+### find
+GET http://localhost:9000/userController/find?name=aa
+Accept: application/json

@@ -9,8 +9,9 @@ spring:
         heart-beat-interval: 500
         metadata:
           dc: B00
-      password: nacos
-      username: nacos
+# nacos 默认没有用户名密码
+#      password: nacos
+#      username: nacos
 server:
   port: 9000
 logging:

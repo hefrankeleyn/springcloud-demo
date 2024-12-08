@@ -5,5 +5,9 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
-      username: nacos
-      password: nacos
+# nacos 默认没有用户名和密码
+#      username: nacos
+#      password: nacos
+logging:
+  level:
+    root: error
